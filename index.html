@@ -29,9 +29,11 @@
                 si lo dejas en tu fondo*:
               </div>
               <div class="inputs-container">
-                <label for="age" class="input-label">Edad</label>
-                <label for="amount" class="input-label">Monto a retirar</label>
+                <input type="number" id="age" name="age" min="18" max="65" class="input-label" placeholder="Edad">
+                <input type="number" id="amount" name="amount" min="1" max="20,600" class="input-label"
+                  placeholder="Monto a retirar">
               </div>
+              <span id="input-error" class="span-error"></span>
               <div class="calculator-actions">
                 <button class="calculate-button">Calcular</button>
                 <img src="images/icono-calculadora.png" alt="icono calculadura" class="calculator-icon" />
@@ -45,8 +47,8 @@
               <div class="result-container">
                 <div class="earnings">
                   <div class="user-data-content">
-                    <span class="user-age">Tienes 25 años</span>
-                    <span class="user-amount">S/ 12,000</span>
+                    <span class="user-age">Tienes</span>
+                    <span class="user-amount"></span>
                   </div>
                 </div>
 
@@ -55,14 +57,14 @@
                 <div class="earnings">
                   <div class="earnings-content">
                     <span class="earnings-label">Tu ganancia</span>
-                    <span class="earnings-amount">S/ 211,401</span>
+                    <span class="earnings-amount"></span>
                   </div>
                 </div>
 
                 <img src="images/icono-igual-verde.png" alt="Arrow Icon" class="arrow-icon" />
                 <div class="result">
                   <span class="result-label">A tus 65 años podrías tener</span>
-                  <span class="result-amount">S/ 223,401</span>
+                  <span class="result-amount"></span>
                 </div>
               </div>
             </div>
