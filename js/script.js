@@ -110,31 +110,55 @@ const EstimatedCalculatedAmount = (actualAge, amountToWithdraw) => {
 var ageInput = document.getElementById('age');
 var amountInput = document.getElementById('amount');
 var calculateButton = document.querySelector('.calculate-button');
+var errorElement = document.getElementById('input-error');
+var resultContainer = document.querySelector('.result-main-container');
 
-function checkInputValues() {
+// Deshabilita el botón inicialmente
+calculateButton.disabled = true;
+
+function checkAgeInput() {
   var age = Number(ageInput.value);
-  var amount = Number(amountInput.value);
-  var resultContainer = document.querySelector('.result-main-container');
-  var errorElement = document.getElementById('input-error');
 
-  // Oculta el contenedor de resultados cada vez que los valores cambian
+  // Oculta el contenedor de resultados cada vez que el valor de age cambia
   resultContainer.style.display = 'none';
 
   if (age < 18 || age > 64) {
     errorElement.textContent = 'La edad debe estar entre 18 y 64 años.';
     calculateButton.disabled = true;
-  } else if (amount < 1 || amount > 20600) {
+  } else {
+    errorElement.textContent = '';
+    if (isValidAmount()) {
+      calculateButton.disabled = false;
+    }
+  }
+}
+
+function checkAmountInput() {
+  var amount = Number(amountInput.value);
+
+  // Oculta el contenedor de resultados cada vez que el valor de amount cambia
+  resultContainer.style.display = 'none';
+
+  if (amount < 1 || amount > 20600) {
     errorElement.textContent = 'El monto debe ser menor a S/ 20,600 (4 UIT)';
     calculateButton.disabled = true;
   } else {
     errorElement.textContent = '';
-    calculateButton.disabled = false;
+    if (isValidAge()) {
+      calculateButton.disabled = false;
+    }
   }
 }
 
-ageInput.addEventListener('input', checkInputValues);
-amountInput.addEventListener('input', checkInputValues);
+function isValidAge() {
+  var age = Number(ageInput.value);
+  return age >= 18 && age <= 64;
+}
 
-// Deshabilita el botón inicialmente y oculta el contenedor de resultados
-calculateButton.disabled = true;
-document.querySelector('.result-main-container').style.display = 'none';
+function isValidAmount() {
+  var amount = Number(amountInput.value);
+  return amount >= 1 && amount <= 20600;
+}
+
+ageInput.addEventListener('input', checkAgeInput);
+amountInput.addEventListener('input', checkAmountInput);
