@@ -13,7 +13,7 @@ document.querySelector('.calculate-button').addEventListener('click', function (
   if (!isNaN(result)) {
     document.querySelector('.earnings-amount').textContent = "S/ " + maskNumber(result - amount);
     document.querySelector('.result-amount').textContent = "S/ " + maskNumber(result);
-    document.querySelector('.user-age').textContent = 'Tienes ' + age + ' años';
+    document.querySelector('.user-age').textContent = 'Monto de retiro a tus ' + age + ' años';
     document.querySelector('.user-amount').textContent = 'S/ ' + maskNumber(amount);
     document.querySelector('.result-main-container').style.display = 'block';
   } else {
