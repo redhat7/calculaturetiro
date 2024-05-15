@@ -52,7 +52,7 @@
   text-align: center;
   align-self: center;
   margin-top: 32px;
-  font: 300 18px PP Neue Machina, sans-serif;
+  font: 300 28px PP Neue Machina, sans-serif;
 }
 
 .description {
@@ -140,6 +140,10 @@ input[type=number] {
   justify-content: center;
   margin: auto 0;
   padding: 8px 54px;
+}
+
+.calculate-button:enabled {
+  cursor: pointer;
 }
 
 .calculate-button:disabled {
@@ -254,7 +258,6 @@ input[type=number] {
 }
 
 .disclaimer {
-  text-align: justify;
   margin: 34px 0px 0;
   font: 300 14px Savior Sans, sans-serif;
 }
@@ -341,6 +344,10 @@ input[type=number] {
 
   .assumptions-container {
     max-width: 640px;
+  }
+
+  .title {
+    margin-right: 32px;
   }
 }
 
@@ -445,8 +452,6 @@ input[type=number] {
     margin-top: 16px;
   }
 
-
-
   .principal-image {
     display: flex;
     max-width: 500px;
@@ -461,6 +466,4 @@ input[type=number] {
     max-width: 1340px;
     margin: 0 auto;
   }
-
-
 }
