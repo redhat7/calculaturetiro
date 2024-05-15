@@ -1,27 +1,24 @@
-document.getElementById('age').addEventListener('keypress', function(event) {
+document.getElementById('age').addEventListener('keypress', function (event) {
   var charCode = (event.which) ? event.which : event.keyCode;
   if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-      event.preventDefault();
+    event.preventDefault();
   }
 });
 
-document.querySelector('.calculate-button').addEventListener('click', function(event) {
+document.querySelector('.calculate-button').addEventListener('click', function (event) {
   var age = Number(document.getElementById('age').value);
   var amount = Number(document.getElementById('amount').value);
-  if (age < 18 || age > 64) {
-      document.getElementById('input-error').textContent = 'Por favor, ingresa una edad entera entre 18 y 64 años.';
-      return;
-  } 
-  if (amount < 1 || amount > 20600) {
-      document.getElementById('input-error').textContent = 'Por favor, ingresa un monto entre 1 y 20600.';
-      return;
-  } 
-  document.getElementById('input-error').textContent = '';
   var result = EstimatedCalculatedAmount(age, amount);
-  document.querySelector('.earnings-amount').textContent = "S/ " + maskNumber(result - amount);
-  document.querySelector('.result-amount').textContent = "S/ " + maskNumber(result);
-  document.querySelector('.user-age').textContent = 'Tienes ' + age + ' años';
-  document.querySelector('.user-amount').textContent = 'S/ ' + maskNumber(amount);
+
+  if (!isNaN(result)) {
+    document.querySelector('.earnings-amount').textContent = "S/ " + maskNumber(result - amount);
+    document.querySelector('.result-amount').textContent = "S/ " + maskNumber(result);
+    document.querySelector('.user-age').textContent = 'Tienes ' + age + ' años';
+    document.querySelector('.user-amount').textContent = 'S/ ' + maskNumber(amount);
+    document.querySelector('.result-main-container').style.display = 'block';
+  } else {
+    document.querySelector('.result-main-container').style.display = 'none';
+  }
 });
 
 const maskNumber = (num) => {
@@ -109,3 +106,35 @@ const EstimatedCalculatedAmount = (actualAge, amountToWithdraw) => {
     return amount65;
   }
 };
+
+var ageInput = document.getElementById('age');
+var amountInput = document.getElementById('amount');
+var calculateButton = document.querySelector('.calculate-button');
+
+function checkInputValues() {
+  var age = Number(ageInput.value);
+  var amount = Number(amountInput.value);
+  var resultContainer = document.querySelector('.result-main-container');
+  var errorElement = document.getElementById('input-error');
+
+  // Oculta el contenedor de resultados cada vez que los valores cambian
+  resultContainer.style.display = 'none';
+
+  if (age < 18 || age > 64) {
+    errorElement.textContent = 'La edad debe estar entre 18 y 64 años.';
+    calculateButton.disabled = true;
+  } else if (amount < 1 || amount > 20600) {
+    errorElement.textContent = 'El monto debe ser menor a S/ 20,600 (4 UIT)';
+    calculateButton.disabled = true;
+  } else {
+    errorElement.textContent = '';
+    calculateButton.disabled = false;
+  }
+}
+
+ageInput.addEventListener('input', checkInputValues);
+amountInput.addEventListener('input', checkInputValues);
+
+// Deshabilita el botón inicialmente y oculta el contenedor de resultados
+calculateButton.disabled = true;
+document.querySelector('.result-main-container').style.display = 'none';

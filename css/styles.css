@@ -147,6 +147,10 @@ input[type=number] {
   padding: 8px 54px;
 }
 
+.calculate-button:disabled {
+  background-color: gray;
+}
+
 .calculator-icon {
   aspect-ratio: 1.15;
   object-fit: auto;
@@ -158,6 +162,10 @@ input[type=number] {
   text-align: left;
   margin-top: 16px;
   font: 300 12px Barlow, sans-serif;
+}
+
+.result-main-container {
+  display: none;
 }
 
 .section-title {
@@ -252,7 +260,7 @@ input[type=number] {
 
 .disclaimer {
   text-align: justify;
-  margin: 34px 20px 0;
+  margin: 34px 0px 0;
   font: 600 14px Savior Sans, sans-serif;
 }
 
@@ -358,6 +366,10 @@ input[type=number] {
     max-width: 250px;
   }
 
+  .calculator {
+    min-width: 610px;
+  }
+
   .image-container {
     display: flex;
     width: 100%;
@@ -389,6 +401,7 @@ input[type=number] {
   }
 
   .calculator {
+    min-width: 767px;
     margin-top: 12px;
     padding: 32px 0px;
   }
@@ -435,7 +448,7 @@ input[type=number] {
   }
 
   .disclaimer {
-    margin: 64px 20px 0;
+    margin: 64px 0px 0;
   }
 
   .earnings {
